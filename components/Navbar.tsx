@@ -1,12 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full h-16 bg-neutral-white/80 backdrop-blur border-b border-neutral-200 z-50">
-      <div className="max-w-container mx-auto px-6 md:px-12 h-full flex items-center justify-between">
-        <h1 className="font-heading text-body font-semibold">
-          Matcha Kun
-        </h1>
+    <nav className="fixed top-0 w-full bg-neutral-white/80 backdrop-blur border-b border-neutral-200 z-50">
+      <div className="max-w-container mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
+        <Image src="/vercel.svg" alt="Matcha Kun" width={100} height={48} className="logo h-10 w-auto"/>
 
         <div className="flex gap-6 text-body-sm font-sans">
           <Link href="/">Home</Link>
