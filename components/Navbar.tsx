@@ -3,13 +3,12 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full bg-neutral-white/80 backdrop-blur border-b border-neutral-200 z-50">
-      <div className="max-w-container mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
-        <Image src="/vercel.svg" alt="Matcha Kun" width={100} height={48} className="logo h-10 w-auto"/>
+    <nav className="fixed top-0 w-full h-auto bg-brand-500 z-50">
+      <div className="max-w- mx-auto px-4 md:px-12 py-4 flex items-center justify-between">
+        <Image src="/logo.svg" alt="Matcha Kun" width={100} height={100} className="h-4 md:h-6 w-auto"/>
 
         <div className="flex gap-6 text-body-sm font-sans">
-          <Link href="/">Home</Link>
-          <Link href="/menu">Menu</Link>
+          <Link href="/menu">Know Your Matcha!</Link>
         </div>
       </div>
     </nav>
