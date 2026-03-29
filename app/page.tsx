@@ -11,10 +11,10 @@ export default function Home() {
           {/* LEFT */}
           <div className="space-y-6 text-center md:text-left">
             <h1 className="font-heading text-h1 leading-tight">
-              Modern Matcha
+              Matcha Kun
               <br />
               <span className="text-brand-300">
-                For Your Everyday Energy
+                For Modern Living
               </span>
             </h1>
 
