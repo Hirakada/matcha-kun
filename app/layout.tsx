@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${inter.variable} ${baloo.variable} bg-neutral-white text-neutral-black antialiased`}
       >
         <Navbar />
-        <main className="pt-16">{children}</main>
+        <main>{children}</main>
 
         <Analytics />
       </body>
