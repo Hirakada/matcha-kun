@@ -16,7 +16,7 @@ const baloo = Baloo_2({
 
 export const metadata = {
   title: "Matcha Kun",
-  description: "Modern matcha drinks",
+  description: "Matcha for Modern Living",
 
   icons: {
     icon: [
