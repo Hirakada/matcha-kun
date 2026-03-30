@@ -25,15 +25,15 @@ export default function HeroSection({ active, setActive, menu }: Props) {
                 <div className="absolute w-100 h-100 bg-lime-200/30 blur-[120px] rounded-full -bottom-25 -right-25" />
             </div>
 
-            <div className="max-w-300 mx-auto px-6 md:px-12 grid md:grid-cols-3 items-center">
+            <div className="max-w-300 mx-auto px-6 flex flex-col lg:px-12 grid lg:grid-cols-3 items-center">
                 {/* LEFT */}
-                <div className="flex flex-col z-10 text-center md:text-left space-y-12">
+                <div className="flex flex-col z-10 text-center lg:text-left space-y-12">
                     <div className="space-y-4">
                         <h1 className="font-heading text-h1 leading-tight text-neutral-black tracking-tight">
                             Matcha <span className="text-neutral-white">Kun</span>
                         </h1>
 
-                        <h3 className="flex gap-2 justify-center md:justify-start font-heading text-h3 leading-tight text-neutral-black">
+                        <h3 className="flex gap-2 justify-center lg:justify-start font-heading text-h3 leading-tight text-neutral-black">
                             <span className="text-neutral-white">For</span>
                             <TypingAnimation
                             strings={[
@@ -46,34 +46,34 @@ export default function HeroSection({ active, setActive, menu }: Props) {
                         </h3>
                     </div>
 
-                    <Button className="mx-auto md:mx-0 w-fit font-semibold px-6 py-3 rounded-full bg-neutral-black text-white hover:scale-105 hover:shadow-lg transition-all duration-300">
+                    <Button className="mx-auto lg:mx-0 w-fit font-semibold px-6 py-3 rounded-full bg-neutral-black text-white hover:scale-105 hover:shadow-lg transition-all duration-300">
                         Find Us
                     </Button>
                 </div>
 
                 {/* CENTER */}
                 <AnimatePresence mode="wait">
-                <motion.div
-                    key={active.id}
-                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 1.05, y: -20 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="relative translate-y-16"
-                >
-                    <Image
-                    src={active.image}
-                    alt={active.name}
-                    width={608}
-                    height={1080}
-                    className="hover:scale-105 transition-transform duration-500"
-                    priority
-                    />
-                </motion.div>
+                    <motion.div
+                        key={active.id}
+                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 1.05, y: -20 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        className="relative translate-y-16"
+                    >
+                        <Image
+                        src={active.image}
+                        alt={active.name}
+                        width={608}
+                        height={1080}
+                        className="scale-150 translate-y-16 hover:scale-155 transition-transform duration-500"
+                        priority
+                        />
+                    </motion.div>
                 </AnimatePresence>
 
                 {/* RIGHT */}
-                <div className="hidden md:flex flex-col items-end text-right z-10">
+                <div className="hidden lg:flex flex-col items-end text-right z-10">
                     <div className="max-w-xs w-full ml-auto flex flex-col space-y-5">
                         <div className="relative flex flex-wrap gap-2 w-full justify-start">
 
