@@ -11,7 +11,7 @@ import {
     useScroll,
     useTransform,
 } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSpring } from "framer-motion";
 
 type Props = {
@@ -33,36 +33,104 @@ export default function HeroSection({
     offset: ["start end", "end start"],
     });
 
-    const baseOffset = 360;
+    const [baseOffset, setBaseOffset] = useState(0);
+    const [scaleRange, setScaleRange] = useState<[number, number]>([1.42, 1.58]);
+    const [deviceKey, setDeviceKey] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+
+    const GLOBAL_SCALE_RANGE: [number, number] = [0.32, 1];
+
+    useEffect(() => {
+        const update = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            const isTouch = window.matchMedia("(pointer: coarse)").matches;
+            const isTablet =
+            width >= 768 && width <= 1024 && isTouch && height > 500;
+
+            const isMobileDevice =
+            width < 768 || (isTouch && height < 500);
+
+            if (!isMobileDevice && !isTablet) {
+                setBaseOffset(800);
+                setScaleRange(GLOBAL_SCALE_RANGE);
+                setIsMobile(false);
+            } else if (isTablet) {
+                setBaseOffset(640);
+                setScaleRange(GLOBAL_SCALE_RANGE);
+                setIsMobile(true);
+            } else {
+                setBaseOffset(360);
+                setScaleRange(GLOBAL_SCALE_RANGE);
+                setIsMobile(true);
+            }
+
+            setDeviceKey((prev) => prev + 1);
+        };
+
+        update();
+        window.addEventListener("resize", update);
+
+        return () => window.removeEventListener("resize", update);
+    }, []);
 
     const yParallax = useTransform(
         scrollYProgress,
         [0, 0.5, 1],
         [80, 0, -120]
     );
-
     const yFront = useTransform(scrollYProgress, [0, 1], [200, -200]);
-    const y = useTransform(yParallax, (v) => v + baseOffset);
-    const yBg = useTransform(scrollYProgress, [0, 1], [15, -15]);
-
-    const smoothY = useSpring(y, {
-        stiffness: 70,
-        damping: 22,
-    });
-
-    const baseScale = useTransform(
-        scrollYProgress,
-        [0, 1],
-        [1.42, 1.58]
+    const yFrontFinal = useTransform(
+        [yFront],
+        (v) => {
+            const value = (v as number[])[0];
+            return isMobile ? value * 0.15 : value;
+        }
     );
 
+    const yBg = useTransform(scrollYProgress, [0, 1], [15, -15]);
+
+    const y = useTransform(
+        [yParallax],
+        (v) => {
+            const value = (v as number[])[0];
+
+            return isMobile
+            ? baseOffset + value * 0.2
+            : value + baseOffset;
+        }
+    );
+
+    const baseScale = useTransform(
+        [scrollYProgress],
+        (v) => {
+            const p = (v as number[])[0];
+
+            if (isMobile) {
+            return (
+                scaleRange[0] +
+                (scaleRange[1] - scaleRange[0]) * p * 0.5 +
+                0.25
+            );
+            }
+
+            return scaleRange[0] + (scaleRange[1] - scaleRange[0]) * p;
+        }
+    );
+
+    const smoothY = useSpring(y, {
+    stiffness: 70,
+    damping: 22,
+    });
+
     const finalScale = useTransform(baseScale, (s) =>
-        isHover ? s + 0.04 : s
+    isHover ? s + 0.04 : s
     );
 
     const smoothScale = useSpring(finalScale, {
-        stiffness: 70,
-        damping: 22,
+    stiffness: 70,
+    damping: 22,
     });
 
     return (
@@ -79,31 +147,27 @@ export default function HeroSection({
         <div className="absolute w-100 h-100 bg-lime-200/30 blur-[120px] rounded-full -bottom-25 -right-25" />
         </motion.div>
 
-        <div ref={ref}
-        className="absolute inset-0 flex justify-center pointer-events-none z-10"
-        >
-        <AnimatePresence mode="wait">
-            <motion.div
-            key={active.id}
-            style={{ y: smoothY, scale: smoothScale }}
-            initial={{ opacity: 0, scale: 1.3, y: baseOffset + 20 }}
-            animate={{ opacity: 1, scale: 1.46, y: baseOffset }}
-            exit={{ opacity: 0, scale: 1.5, y: baseOffset - 20 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            onHoverStart={() => setIsHover(true)}
-            onHoverEnd={() => setIsHover(false)}
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-auto"
-            >
-            <Image
-                src={active.image}
-                alt={active.name}
-                width={608}
-                height={1080}
-                className="will-change-transform max-w-[700px] w-full"
-                priority
-            />
-            </motion.div>
-        </AnimatePresence>
+        <div ref={ref} className="absolute inset-0 w-full overflow-visible pointer-events-none z-10">
+            <AnimatePresence mode="wait">
+                <motion.div
+                key={active.id}
+                style={{ y: smoothY, scale: smoothScale }}
+                className="
+                    absolute bottom-[-5%] left-1/2 -translate-x-1/2
+                    w-[160%] max-w-300
+                    pointer-events-auto
+                "
+                >
+                <Image
+                    src={active.image}
+                    alt={active.name}
+                    width={608}
+                    height={1080}
+                    className="w-full h-auto object-contain"
+                    priority
+                />
+                </motion.div>
+            </AnimatePresence>
         </div>
 
         {/* CONTENT GRID */}
@@ -111,7 +175,7 @@ export default function HeroSection({
 
             {/* LEFT */}
             <motion.div
-                style={{ y: yFront }}
+                style={{ y: yFrontFinal }}
                 className="flex flex-col text-center lg:text-left space-y-12"
             >
                 <div>
@@ -142,7 +206,7 @@ export default function HeroSection({
 
             {/* RIGHT */}
             <motion.div
-                style={{ y: yFront }}
+                style={{ y: yFrontFinal }}
                 className="max-w-xs w-full ml-auto"
             >
                 <motion.div
