@@ -25,15 +25,15 @@ export default function HeroSection({ active, setActive, menu }: Props) {
                 <div className="absolute w-100 h-100 bg-lime-200/30 blur-[120px] rounded-full -bottom-25 -right-25" />
             </div>
 
-            <div className="max-w-300 mx-auto px-6 flex flex-col lg:px-12 grid lg:grid-cols-3 items-center">
+            <div className="max-w-300 mx-auto px-6 pt-20 flex flex-col lg:px-12 lg:grid lg:grid-cols-3 items-center">
                 {/* LEFT */}
-                <div className="flex flex-col z-10 text-center lg:text-left space-y-12">
-                    <div className="space-y-4">
-                        <h1 className="font-heading text-h1 leading-tight text-neutral-black tracking-tight">
-                            Matcha <span className="text-neutral-white">Kun</span>
+                <div className="container-type-inline-size flex flex-col z-10 text-center lg:text-left space-y-12">
+                    <div className="[@container]">
+                        <h1 className="font-heading text-display text-neutral-black tracking-tight">
+                            Matcha
                         </h1>
 
-                        <h3 className="flex gap-2 justify-center lg:justify-start font-heading text-h3 leading-tight text-neutral-black">
+                        <h3 className="flex gap-2 justify-center lg:justify-start font-heading text-h3 text-neutral-black">
                             <span className="text-neutral-white">For</span>
                             <TypingAnimation
                             strings={[
