@@ -12,14 +12,11 @@ export default function Home() {
 
   return (
     <main className="relative z-10 bg-transparent">
-      {/* HERO — TANPA ANIMASI */}
       <HeroSection
         active={active}
         setActive={setActive}
         menu={matchaMenu}
       />
-
-      {/* SECTION LAIN (boleh tetap animasi kalau mau) */}
       <ValueSection />
       <CTASection />
     </main>
