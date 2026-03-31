@@ -19,10 +19,10 @@ export default function Home() {
         menu={matchaMenu}
       />
       <RevealOnScroll>
-        <ValueSection />
+        {(isVisible) => <ValueSection />}
       </RevealOnScroll>
       <RevealOnScroll>
-        <CTASection />
+        {(isVisible) => <CTASection />}
       </RevealOnScroll>
     </main>
   );

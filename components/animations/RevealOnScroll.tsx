@@ -1,73 +1,55 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
-type VariantType = "fadeUp" | "fadeLeft" | "fadeRight" | "zoom";
+import { useRef, useEffect, useState } from "react";
+import useScrollDirection from "./useScrollDirection";
 
 type Props = {
-  children: React.ReactNode;
-  className?: string;
-  variant?: VariantType;
-  once?: boolean;
-  disabled?: boolean; // for loader sync
-};
-
-const variantsMap = {
-  fadeUp: {
-    hidden: { opacity: 0, y: 60 },
-    show: { opacity: 1, y: 0 },
-  },
-  fadeLeft: {
-    hidden: { opacity: 0, x: -60 },
-    show: { opacity: 1, x: 0 },
-  },
-  fadeRight: {
-    hidden: { opacity: 0, x: 60 },
-    show: { opacity: 1, x: 0 },
-  },
-  zoom: {
-    hidden: { opacity: 0, scale: 0.92 },
-    show: { opacity: 1, scale: 1 },
-  },
+    children: (isVisible: boolean) => React.ReactNode;
+    className?: string;
 };
 
 export default function RevealOnScroll({
-  children,
-  className = "",
-  variant = "fadeUp",
-  once = false,
-  disabled = false,
+    children,
+    className = "",
 }: Props) {
-  const ref = useRef(null);
+    const ref = useRef(null);
 
-  const isInView = useInView(ref, {
-    margin: "-120px",
-    once,
-  });
+    const isInView = useInView(ref, {
+        amount: 0.3, 
+    });
 
-  const shouldAnimate = isInView && !disabled;
+    const direction = useScrollDirection();
+    const [visible, setVisible] = useState(false);
 
-  const selected = variantsMap[variant];
+    useEffect(() => {
+        if (direction === "down" && isInView) {
+            setVisible(true);
+        }
 
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={shouldAnimate ? "show" : "hidden"}
-      variants={{
-        hidden: selected.hidden,
-        show: {
-          ...selected.show,
-          transition: {
-            duration: 0.6,
-            ease: "easeOut",
-          },
-        },
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+        if (direction === "up" && !isInView) {
+            const timeout = setTimeout(() => {
+            setVisible(false);
+            }, 120); 
+            return () => clearTimeout(timeout);
+        }
+    }, [isInView, direction]);
+
+    return (
+        <motion.div
+            ref={ref}
+            className={className}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{
+            opacity: visible ? 1 : 0,
+            y: visible ? 0 : 60,
+            }}
+            transition={{
+            duration: 0.55,
+            ease: [0.22, 1, 0.36, 1],
+            }}
+        >
+            {children(visible)}
+        </motion.div>
+    );
 }
