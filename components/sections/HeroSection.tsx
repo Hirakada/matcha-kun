@@ -152,12 +152,14 @@ export default function HeroSection({
     }, [active, menu]);
 
     useEffect(() => {
+        if (!menu.length) return;
+
         const interval = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % menu.length);
         }, 4000);
 
         return () => clearInterval(interval);
-    }, [menu.length]);
+    }, [currentIndex, menu.length]);
 
     useEffect(() => {
         if (!menu[currentIndex]) return;
@@ -216,8 +218,6 @@ export default function HeroSection({
         </div>
 
         {/* CONTENT GRID */}
-        <LayoutGroup id="menu-selector">
-
         <div className="max-w-300 mx-auto px-6 pt-20 flex flex-col lg:px-12 lg:grid lg:grid-cols-3 items-center w-full z-20">
 
             {/* LEFT */}
@@ -249,12 +249,14 @@ export default function HeroSection({
                     Find Us
                 </Button>
 
-                <MenuSelector
-                    menu={menu}
-                    currentIndex={currentIndex}
-                    setCurrentIndex={setCurrentIndex}
-                    className="flex lg:hidden justify-center mt-6 flex-wrap"
-                />
+                <LayoutGroup id="menu-selector-mobile">
+                    <MenuSelector
+                        menu={menu}
+                        currentIndex={currentIndex}
+                        setCurrentIndex={setCurrentIndex}
+                        className="flex lg:hidden justify-center mt-6 flex-wrap"
+                    />
+                </LayoutGroup>
             </motion.div>
 
             {/* EMPTY CENTER */}
@@ -263,7 +265,7 @@ export default function HeroSection({
             {/* RIGHT */}
             <motion.div
                 style={{ y: yFrontFinal }}
-                className="flex flex-col items-end gap-2 max-w-xs w-full ml-auto absolute bottom-[6dvh] lg:relative"
+                className="flex flex-col flex-start items-end gap-2 max-w-xs w-full ml-auto absolute bottom-[6dvh] lg:relative"
             >   
                 <button
                     onClick={toggle}
@@ -309,12 +311,14 @@ export default function HeroSection({
                             bg-gradient-to-b from-neutral-white/30 to-transparent
                             opacity-40
                         " />
-                        <MenuSelector
-                            menu={menu}
-                            currentIndex={currentIndex}
-                            setCurrentIndex={setCurrentIndex}
-                            className="hidden lg:flex relative flex-wrap gap-2 w-full justify-start"
-                        />
+                        <LayoutGroup id="menu-selector-desktop">
+                            <MenuSelector
+                                menu={menu}
+                                currentIndex={currentIndex}
+                                setCurrentIndex={setCurrentIndex}
+                                className="hidden lg:flex justify-between mb-4" 
+                            />
+                        </LayoutGroup>
 
                         {/* DESCRIPTION */}
                         <div className="relative">
@@ -326,7 +330,7 @@ export default function HeroSection({
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.3 }}
-                                className="text-body-sm text-left leading-relaxed text-white/80"
+                                className="text-body-sm text-justify leading-relaxed text-white/80"
                             >
                                 {active.description}
                             </motion.p>
@@ -371,7 +375,6 @@ export default function HeroSection({
                     </motion.div>
             </motion.div>
         </div>
-        </LayoutGroup>
     </section>
     );
 }

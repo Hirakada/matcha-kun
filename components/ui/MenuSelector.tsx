@@ -15,45 +15,35 @@ export default function MenuSelector({
     className = "",
 }: Props) {
     return (
-            <motion.div
-                layout="position"
-                className={className}
-            >
+        <div className={className}>
             {menu.map((item, index) => {
                 const isActive = currentIndex === index;
 
                 return (
-                    <motion.button
-                        layout
+                    <button
                         key={item.id}
                         type="button"
                         onClick={() => setCurrentIndex(index)}
-                        className="relative px-3 py-1.5 text-xs font-medium rounded-full border border-white/20 whitespace-nowrap">
-                        <span className="absolute inset-0">
-                            {isActive && (
-                                <motion.span
-                                    layoutId="selector-pill"
-                                    className="absolute inset-0 rounded-full"
-                                    style={{
-                                        backgroundColor: "#fefefe",
-                                        willChange: "transform",
-                                        backfaceVisibility: "hidden"
-                                    }}
-                                    transition={{
-                                        type: "spring",
-                                        stiffness: 500,
-                                        damping: 35,
-                                    }}
-                                />
-                            )}
-                        </span>
+                        className="relative px-3 py-1.5 text-xs font-medium rounded-full border border-white/20 whitespace-nowrap transition duration-200"
+                    >
+                        {isActive && (
+                            <motion.span
+                                layoutId="selector-pill"
+                                className="absolute inset-0 bg-neutral-white rounded-full shadow-md"
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 30,
+                                }}
+                            />
+                        )}
 
                         <span className={`relative z-10 ${isActive ? "text-black" : "text-neutral-white"}`}>
                             {item.name}
                         </span>
-                    </motion.button>
+                    </button>
                 );
             })}
-        </motion.div>
+        </div>
     );
 }
