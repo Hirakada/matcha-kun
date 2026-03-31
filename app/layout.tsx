@@ -1,6 +1,6 @@
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
-import ClientWrapper from "@/components/ui/ClientWrapper";
+import ClientWrapper from "@/components/providers/ClientWrapper";
 
 import { Inter, Baloo_2 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";

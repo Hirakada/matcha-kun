@@ -6,6 +6,7 @@ import { matchaMenu, MatchaItem } from "@/data/matchaMenu";
 import HeroSection from "@/components/sections/HeroSection";
 import ValueSection from "@/components/sections/ValueSection";
 import CTASection from "@/components/sections/CTASection";
+import RevealOnScroll from "@/components/animations/RevealOnScroll";
 
 export default function Home() {
   const [active, setActive] = useState<MatchaItem>(matchaMenu[0]);
@@ -17,8 +18,12 @@ export default function Home() {
         setActive={setActive}
         menu={matchaMenu}
       />
-      <ValueSection />
-      <CTASection />
+      <RevealOnScroll>
+        <ValueSection />
+      </RevealOnScroll>
+      <RevealOnScroll>
+        <CTASection />
+      </RevealOnScroll>
     </main>
   );
 }

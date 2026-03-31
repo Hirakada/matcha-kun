@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import MatchaLoader from "./MatchaLoader";
+import MatchaLoader from "@/components/loaders/MatchaLoader";
 
 export default function ClientWrapper({
   children,
