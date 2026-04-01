@@ -89,7 +89,7 @@ function Card({
             text-body text-neutral-white/70 
             leading-relaxed
             
-            flex-grow   /* 🔥 INI KUNCI EQUAL HEIGHT */
+            flex-grow
             
             max-w-xs sm:max-w-sm mx-auto
           "
@@ -134,7 +134,7 @@ export default function ValueSection() {
                     lg:grid-cols-3
                     gap-8 lg:gap-10
                     
-                    auto-rows-fr   /* 🔥 GRID FIX */
+                    auto-rows-fr
                     items-stretch
                   "
                   >
