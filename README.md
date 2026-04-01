@@ -4,7 +4,9 @@
 
 Find the matcha that fits you — effortlessly.
 
-### [🌐 Start Exploring](https://matchakun.vercel.app/)
+[🌐 Start Exploring](https://matchakun.vercel.app/)
+
+---
 
 ### 🌿 Why Matcha Kun
 
@@ -16,6 +18,8 @@ Matcha Kun simplifies that.
 It helps you move from uncertainty to clarity,  
 so you can confidently choose what suits you best.
 
+---
+
 ### ✨ What Makes It Different
 
 - Guided discovery — not guessing, but understanding  
@@ -23,19 +27,21 @@ so you can confidently choose what suits you best.
 - Designed for clarity — clean, focused, intentional  
 - Built for everyday use — simple, fast, accessible  
 
+---
+
 ### 🧭 A More Thoughtful Approach
 
-Matcha isn’t just a drink — it’s a moment.
+Matcha isn’t just a drink — it’s a moment.  
+Choosing should feel calm, not rushed.
 
-Matcha Kun creates a space where  
-choosing feels calm, not rushed.
+---
 
-### 🧠 Built on a Simple Idea
-
+**🧠 Built on a Simple Idea**  
 Tradition, adapted for modern living.
 
-### ⚙️ Built With
+---
 
+**⚙️ Built With**
 - [Next.js](https://nextjs.org/docs)  
 - [Tailwind CSS](https://tailwindcss.com/)  
 - [Framer Motion](https://www.framer.com/motion/)  
