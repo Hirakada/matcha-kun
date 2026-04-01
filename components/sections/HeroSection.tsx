@@ -144,26 +144,21 @@ export default function HeroSection({
     };
 
     {/* Slide */}
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    useEffect(() => {
-        const index = menu.findIndex((m) => m.id === active.id);
-        if (index !== -1) setCurrentIndex(index);
-    }, [active, menu]);
+    const currentIndex = menu.findIndex((m) => m.id === active.id);
+    const handleSetIndex = (index: number) => {
+        if (!menu[index]) return;
+        setActive(menu[index]);
+    };
 
     useEffect(() => {
         if (!menu.length) return;
 
         const interval = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % menu.length);
+            const nextIndex = (currentIndex + 1) % menu.length;
+            setActive(menu[nextIndex]);
         }, 4000);
 
         return () => clearInterval(interval);
-    }, [currentIndex, menu.length]);
-
-    useEffect(() => {
-        if (!menu[currentIndex]) return;
-        setActive(menu[currentIndex]);
     }, [currentIndex, menu, setActive]);
 
     return (
@@ -268,7 +263,7 @@ export default function HeroSection({
                     <MenuSelector
                         menu={menu}
                         currentIndex={currentIndex}
-                        setCurrentIndex={setCurrentIndex}
+                        setCurrentIndex={handleSetIndex}
                         className="flex lg:hidden justify-center mt-6 flex-wrap"
                     />
                 </LayoutGroup>
@@ -330,7 +325,7 @@ export default function HeroSection({
                             <MenuSelector
                                 menu={menu}
                                 currentIndex={currentIndex}
-                                setCurrentIndex={setCurrentIndex}
+                                setCurrentIndex={handleSetIndex}
                                 className="hidden lg:flex justify-between mb-4" 
                             />
                         </LayoutGroup>
