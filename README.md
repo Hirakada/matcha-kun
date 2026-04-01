@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Matcha Kun
 
-## Getting Started
+### Matcha for Modern Living
 
-First, run the development server:
+Find the matcha that fits you — effortlessly.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🌐 Start Exploring
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[Live Experience](https://matchakun.vercel.app/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 🌿 Why Matcha Kun
 
-To learn more about Next.js, take a look at the following resources:
+Choosing matcha can feel complicated.  
+Different types, flavors, and styles — all at once.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Matcha Kun simplifies that.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+It helps you move from uncertainty to clarity,  
+so you can confidently choose what suits you best.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ✨ What Makes It Different
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Guided discovery — not guessing, but understanding  
+- Curated choices — fewer, better options  
+- Designed for clarity — clean, focused, intentional  
+- Built for everyday use — simple, fast, accessible  
+
+---
+
+### 🧭 A More Thoughtful Approach
+
+Matcha isn’t just a drink — it’s a moment.
+
+Matcha Kun creates a space where  
+choosing feels calm, not rushed.
+
+---
+
+### 🧠 Built on a Simple Idea
+
+Tradition, adapted for modern living.
+
+---
+
+### ⚙️ Built With
+
+- [Next.js](https://nextjs.org/docs)  
+- [Tailwind CSS](https://tailwindcss.com/)  
+- [Framer Motion](https://www.framer.com/motion/)  
+- [Vercel](https://vercel.com/)  
