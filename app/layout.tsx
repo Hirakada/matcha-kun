@@ -33,6 +33,9 @@ export const metadata = {
       },
     ],
   },
+  verification: {
+    google: "8vIUEh4uMiGei264_Vwwa5NGN48Nc43PQrggJC6pcOo",
+  },
 };
 
 export default function RootLayout({
