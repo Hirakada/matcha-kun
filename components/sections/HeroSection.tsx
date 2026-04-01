@@ -169,50 +169,65 @@ export default function HeroSection({
     return (
     <section
         id="hero"
-        className="relative h-[100dvh] flex bg-brand-300 overflow-hidden"
+        className="relative h-[100dvh] flex overflow-hidden"
     >
         {/* BACKGROUND */}
         <motion.div
-        style={{ y: yBg }}
-        className="absolute inset-0 -z-10"
+            style={{ y: yBg, scale: 1.2 }}
+            className="absolute inset-0 -z-10"
         >
-        <div className="absolute w-125 h-125 bg-white/20 blur-[120px] rounded-full -top-25 -left-[100px]" />
-        <div className="absolute w-100 h-100 bg-lime-200/30 blur-[120px] rounded-full -bottom-25 -right-25" />
+            <div className="absolute inset-0">
+            <img
+                src="/images/hero-bg.png"
+                alt=""
+                className="w-full h-full object-cover opacity-25 block"
+            />
+            </div>
+
+            <div className="absolute inset-0 bg-brand-300/70" />
+
+            <div className="absolute w-125 h-125 bg-white/20 blur-[120px] rounded-full -top-25 -left-[100px]" />
+            <div className="absolute w-100 h-100 bg-lime-200/30 blur-[120px] rounded-full -bottom-25 -right-25" />
         </motion.div>
 
         {/* IMAGE */}
         <div
             ref={ref}
             className="absolute inset-0 w-full overflow-visible z-10 pointer-events-none"
-        >            
+        >
             <AnimatePresence mode="wait" initial={false}>
                 <motion.div
-                    key={active.id}
-                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -40, scale: 0.95 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="
+                key={active.id}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -40, scale: 0.95 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="
                     absolute bottom-[-5%] left-1/2 -translate-x-1/2
                     w-[160%] max-w-300
                     pointer-events-auto
-                    "
+                "
                 >
-                <motion.div
-                    style={{ 
-                        y: smoothY, 
-                        scale: smoothScale
-                    }}
-                >
-                    <Image
-                        src={active.image}
-                        alt={active.name}
-                        width={608}
-                        height={1080}
-                        className="w-full h-auto object-contain"
-                        priority
-                    />
-                </motion.div>
+                    <motion.div
+                        style={{
+                            y: smoothY,
+                            scale: smoothScale,
+                        }}
+                        className="relative"
+                    >
+                        <Image
+                            src={active.image}
+                            alt={active.name}
+                            width={608}
+                            height={1080}
+                            priority
+                            className="
+                                w-full h-auto object-contain
+                                relative z-10
+                                drop-shadow-[0_20px_25px_rgba(0,0,0,0.2)]
+                            "
+                        />
+                    </motion.div>
                 </motion.div>
             </AnimatePresence>
         </div>
